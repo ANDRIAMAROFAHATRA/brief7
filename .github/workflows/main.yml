@@ -16,4 +16,4 @@ jobs:
         
     - name: Display version
       run: |
-        echo "${{step.latest_tag.outputs.tag}}"
+        echo "${{steps.latest_tag.outputs.tag}}"
