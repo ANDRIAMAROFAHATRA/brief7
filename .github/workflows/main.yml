@@ -1,0 +1,19 @@
+name: 'Docker' #au choix
+on: [workflow_dispatch] #appuyer sur Run workflow manuellement dans github
+jobs:
+  deploy-container: #nom de mon job 
+    runs-on: ubuntu-latest #la machine que github action va deployer pour exécuter mon pipline
+    steps:
+    - name: check repository
+      uses: actions/checkout@v2
+      
+    - name: Get latest tag
+      id: latest_tag
+      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+      with:
+        org: 'simplonasa'
+        repo: 'azure_voting_app'
+        
+    - name: Display version
+      run: |
+        echo "${{step.latest_tag.outputs.tag}}"
